@@ -49,7 +49,7 @@ pause;
 % Scale features and set them to zero mean
 fprintf('Normalizing Features ...\n');
 
-[X mu sigma] = featureNormalize(X);
+[X,mu,sigma] = featureNormalize(X);
 
 % Add intercept term to X
 X = [ones(m, 1) X];
@@ -57,7 +57,6 @@ X = [ones(m, 1) X];
 
 %% ================ Part 2: Gradient Descent ================
 
-% ====================== YOUR CODE HERE ======================
 % Instructions: We have provided you with the following starter
 %               code that runs gradient descent with a particular
 %               learning rate (alpha). 
@@ -101,13 +100,11 @@ fprintf(' %f \n', theta);
 fprintf('\n');
 
 % Estimate the price of a 1650 sq-ft, 3 br house
-% ====================== YOUR CODE HERE ======================
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
-price = 0; % You should change this
 
-
-% ============================================================
+norm_house = ([1650,3] - mu)./sigma;
+price = [1,norm_house]*theta;
 
 fprintf(['Predicted price of a 1650 sq-ft, 3 br house ' ...
          '(using gradient descent):\n $%f\n'], price);
@@ -148,11 +145,7 @@ fprintf('\n');
 
 
 % Estimate the price of a 1650 sq-ft, 3 br house
-% ====================== YOUR CODE HERE ======================
-price = 0; % You should change this
-
-
-% ============================================================
+price = [1,1650,3]*theta;
 
 fprintf(['Predicted price of a 1650 sq-ft, 3 br house ' ...
          '(using normal equations):\n $%f\n'], price);
