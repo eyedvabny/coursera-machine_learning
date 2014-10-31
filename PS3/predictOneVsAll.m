@@ -9,15 +9,10 @@ function p = predictOneVsAll(all_theta, X)
 %  for 4 examples) 
 
 m = size(X, 1);
-num_labels = size(all_theta, 1);
-
-% You need to return the following variables correctly 
-p = zeros(size(X, 1), 1);
 
 % Add ones to the X data matrix
 X = [ones(m, 1) X];
 
-% ====================== YOUR CODE HERE ======================
 % Instructions: Complete the following code to make predictions using
 %               your learned logistic regression parameters (one-vs-all).
 %               You should set p to a vector of predictions (from 1 to
@@ -30,13 +25,7 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-
-
-
-
-
-
-% =========================================================================
-
-
+% x = [m n+1] m = 5000, n=400
+% all_theta = [K n+1] K=10, n=400
+[M,p] = max(sigmoid(X * all_theta'),[],2);
 end
